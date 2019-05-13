@@ -10,6 +10,7 @@ namespace SmartAC1.Data
     {
         public DbSet<Device> Devices { get; set; }
         public DbSet<SensorData> SensorData { get; set; }
+        public DbSet<AlertItem> AlertItems { get; set; }
 
         public SmartAc1DbContext(DbContextOptions<SmartAc1DbContext> options) : base(options)
         {
@@ -19,6 +20,7 @@ namespace SmartAC1.Data
         {
             modelBuilder.MapDevice();
             modelBuilder.MapSensorData();
+            modelBuilder.MapAlertItems();
             base.OnModelCreating(modelBuilder);
         }
     }

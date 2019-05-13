@@ -50,5 +50,18 @@ namespace SmartAC1.Data.Mappings
 
             return modelBuilder;
         }
+
+        public static ModelBuilder MapAlertItems(this ModelBuilder modelBuilder)
+        {
+            var entity = modelBuilder.Entity<AlertItem>();
+
+            entity
+                .Property(i => i.SerialNr)
+                .HasMaxLength(30);
+            entity
+                .Property(i => i.AlertMessage)
+                .HasMaxLength(300);
+            return modelBuilder;
+        }
     }
 }

@@ -38,4 +38,10 @@ namespace SmartAC1.Core.Interfaces
         bool AddSensorData(SensorData sensorData);
         bool AddSensorDataBulk(IEnumerable<SensorData> sensorData);
     }
+
+    public interface IAlertsRepository
+    {
+        IEnumerable<AlertItem> GetUnresolvedAlerts();
+        bool ResolveAlert(int id);
+    }
 }
