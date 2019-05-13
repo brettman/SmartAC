@@ -61,6 +61,8 @@ namespace SmartAC1
             services.AddTransient<ISensorDataRepository, SensorDataRepository>();
             services.AddTransient<ISensorDataService, SensorDataService>();
             services.AddTransient<IDeviceService, DeviceService>();
+            services.AddTransient<IAlertsService, AlertsService>();
+            services.AddTransient<IAlertsRepository, AlertsRepository>();
 
             services.AddSwaggerGen(c =>
             {

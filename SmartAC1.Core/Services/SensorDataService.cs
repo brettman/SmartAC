@@ -10,14 +10,17 @@ namespace SmartAC1.Core.Services
     public class SensorDataService : ISensorDataService
     {
         private readonly ISensorDataRepository _repo;
+        private readonly IAlertsRepository _alertsRepo;
+
         private static readonly Func<IEnumerable<SensorData>, IEnumerable<SensorData>> HealthAlertData = data
             => data.Where(i => i.DeviceHealthStatus == "needs_service"
                                || i.DeviceHealthStatus == "needs_new_filter"
                                || i.DeviceHealthStatus == "gas_leak");
 
-        public SensorDataService(ISensorDataRepository repo)
+        public SensorDataService(ISensorDataRepository repo, IAlertsRepository alertsRepo)
         {
             _repo = repo;
+            _alertsRepo = alertsRepo;
         }
 
         public void AddSensorData(SensorData sensorData)
@@ -47,15 +50,22 @@ namespace SmartAC1.Core.Services
         private void RaiseDeviceHealthAlert(IEnumerable<SensorData> alertData)
         {
             // todo:  make this data available to the logged in Admin
-            alertData.ToList().ForEach(i => 
-                Console.WriteLine($"Alert:  Device Health Status: {i.SerialNr} | {i.DeviceHealthStatus}"));
+            alertData.ToList().ForEach(i =>
+            {
+                _alertsRepo.AddAlert(new AlertItem {SerialNr = i.SerialNr, TimeStamp = i.SubmissionTime, AlertMessage = i.DeviceHealthStatus});
+                Console.WriteLine($"Alert:  Device Health Status: {i.SerialNr} | {i.DeviceHealthStatus}");
+
+            });
         }
 
         private void RaiseCoAlert(IEnumerable<SensorData> alertData)
         {
             // todo:  raise alerts here...
-            alertData.ToList().ForEach(i => 
-                Console.WriteLine($"Alert:  Carbon monoxide level > 9ppm: {i.SerialNr} | {i.CarbonMonoxidePpm}ppm | {i.SubmissionTime}"));
+            alertData.ToList().ForEach(i =>
+            {
+                _alertsRepo.AddAlert(new AlertItem {SerialNr = i.SerialNr, TimeStamp = i.SubmissionTime, AlertMessage = $"CO LEVEL EXCEEDS LIMIT: {i.CarbonMonoxidePpm}"});
+                Console.WriteLine($"Alert:  Carbon monoxide level > 9ppm: {i.SerialNr} | {i.CarbonMonoxidePpm}ppm | {i.SubmissionTime}");
+            });
         }
     }
 }

@@ -1,8 +1,42 @@
-﻿@{
+﻿@model IEnumerable<SmartAC1.Core.Models.AlertItem>
+
+@{
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.SerialNr)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AlertMessage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsResolved)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SerialNr)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.AlertMessage)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsResolved)
+                </td>
+                <td>
+                    @Html.ActionLink("Resolve", "Resolve", new { item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

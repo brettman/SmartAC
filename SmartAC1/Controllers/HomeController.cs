@@ -4,17 +4,35 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using SmartAC1.Core.Interfaces;
 using SmartAC1.Models;
 
 namespace SmartAC1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly IAlertsService _alertsService;
+
+        public HomeController(IAlertsService alertsService)
+        {
+            _alertsService = alertsService;
+        }
+
         [ApiExplorerSettings(IgnoreApi = true)]
         [HttpGet]
         public IActionResult Index()
         {
-            return View();
+            var activeAlerts = _alertsService.GetUnresolvedAlerts();
+            return View(activeAlerts);
+        }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet]
+        public IActionResult Resolve(int id)
+        {
+             _alertsService.ResolveAlert(id);
+            var activeAlerts = _alertsService.GetUnresolvedAlerts();
+            return View("Index",activeAlerts);
         }
 
         [ApiExplorerSettings(IgnoreApi = true)]
