@@ -21,63 +21,6 @@ namespace SmartAC1.Data
             await CreateDefaultUserAndRoleForApplication(userManager, roleManager, logger);
         }
 
-        //private static async Task CreateTemplateTexts(SmartAc1DbContext context)
-        //{
-        //    var entity = context.TemplateTexts;
-        //    if (entity.Any())
-        //        return;
-
-        //    var texts = new List<TemplateText>()
-        //    {
-        //        new TemplateText
-        //        {
-        //            ApplicationType = "prb",
-        //            Filter = "low",
-        //            TemplateName = "investmentadvice",
-        //            TemplateValue = "the template for investment advice 1:  Low"
-        //        },
-        //        new TemplateText
-        //        {
-        //            ApplicationType = "prb",
-        //            Filter = "medium",
-        //            TemplateName = "investmentadvice",
-        //            TemplateValue = "the template for investment advice 1: Medium"
-        //        },
-        //        new TemplateText
-        //        {
-        //            ApplicationType = "prb",
-        //            Filter = "High",
-        //            TemplateName = "investmentadvice",
-        //            TemplateValue = "the template for investment advice 1: High"
-        //        },
-
-        //        new TemplateText
-        //        {
-        //            ApplicationType = "prb",
-        //            Filter = "low",
-        //            TemplateName = "clientInstructions",
-        //            TemplateValue = "the template for client instructions: low"
-        //        },
-        //        new TemplateText
-        //        {
-        //            ApplicationType = "prb",
-        //            Filter = "medium",
-        //            TemplateName = "clientInstructions",
-        //            TemplateValue = "the template for client instructions: medium"
-        //        },
-        //        new TemplateText
-        //        {
-        //            ApplicationType = "prb",
-        //            Filter = "high",
-        //            TemplateName = "clientInstructions",
-        //            TemplateValue = "the template for client instructions: high"
-        //        },
-        //    };
-
-        //    await entity.AddRangeAsync(texts);
-        //    context.SaveChanges();
-        //}
-
         private static async Task CreateDefaultUserAndRoleForApplication(UserManager<IdentityUser> um, RoleManager<IdentityRole> rm, ILogger<DbInitializer> logger)
         {
             const string administratorRole = "Admin";
