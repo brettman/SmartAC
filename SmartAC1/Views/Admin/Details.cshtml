@@ -1,4 +1,4 @@
-﻿@model SmartAC1.Core.Models.Device
+﻿@model SmartAC1.Models.DeviceViewModel
 
 @{
     ViewData["Title"] = "Details";
@@ -39,9 +39,34 @@
     <li>@Html.ActionLink("This year", "Details", new { Model.SerialNr, timeLimit = "this_year" })</li>
 </ul>
 
-<div>
-    <p>??? Data points in this period.</p>
-</div>
-<div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Timestamp</th>
+            <th>Temperature</th>
+            <th>Humidity</th>
+            <th>Carbon Monoxide</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.SensorData)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Timestamp)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Temperature)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Humidity)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CO)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table><div>
     <a asp-action="Index">Back to List</a>
 </div>

@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SmartAC1.Core.Interfaces;
 using SmartAC1.Core.Models;
+using SmartAC1.Models;
 
 namespace SmartAC1.Controllers
 {
@@ -25,8 +26,8 @@ namespace SmartAC1.Controllers
             
             var limit = TimeLimit.today;
             Enum.TryParse(timeLimit, true, out limit);
-            var device = _deviceService.GetDevice(serialNr, TimeLimit.this_week);
-            return View(device);
+            var device = _deviceService.GetDevice(serialNr, limit);
+            return View(new DeviceViewModel(device));
         }
     }
 }
