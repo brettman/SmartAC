@@ -5,25 +5,25 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Admin</h1>
+<h1>Device List</h1>
 
 <table class="table">
     <thead>
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.SerialNr)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RegistrationDate)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.FirmwareVersion)
-            </th>
-            <th></th>
-        </tr>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.SerialNr)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegistrationDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirmwareVersion)
+        </th>
+        <th></th>
+    </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+    @foreach (var item in Model) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.SerialNr)
@@ -35,9 +35,9 @@
                 @Html.DisplayFor(modelItem => item.FirmwareVersion)
             </td>
             <td>
-                @Html.ActionLink("Details", "Details", new {  item.SerialNr  }) 
+                @Html.ActionLink("Details", "Details", new {  item.SerialNr, time_limit="today"  }) 
             </td>
         </tr>
-}
+    }
     </tbody>
 </table>

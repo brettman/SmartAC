@@ -11,27 +11,37 @@
     <h4>Device</h4>
     <hr />
     <dl class="row">
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.SerialNr)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.SerialNr)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.RegistrationDate)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.RegistrationDate)
         </dd>
-        <dt class = "col-sm-2">
+        <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.FirmwareVersion)
         </dt>
-        <dd class = "col-sm-10">
+        <dd class="col-sm-10">
             @Html.DisplayFor(model => model.FirmwareVersion)
         </dd>
     </dl>
 </div>
+<h3>Sensor Data</h3>
+<ul>
+    <li>@Html.ActionLink("Today", "Details", new { Model.SerialNr, timeLimit = "today" })</li>
+    <li>@Html.ActionLink("This week", "Details", new { Model.SerialNr, timeLimit = "this_week" })</li>
+    <li>@Html.ActionLink("This month", "Details", new { Model.SerialNr, timeLimit = "this_month" })</li>
+    <li>@Html.ActionLink("This year", "Details", new { Model.SerialNr, timeLimit = "this_year" })</li>
+</ul>
+
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <p>??? Data points in this period.</p>
+</div>
+<div>
     <a asp-action="Index">Back to List</a>
 </div>

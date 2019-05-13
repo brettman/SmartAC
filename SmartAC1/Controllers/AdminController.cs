@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
 using SmartAC1.Core.Interfaces;
 using SmartAC1.Core.Models;
 
@@ -19,8 +20,11 @@ namespace SmartAC1.Controllers
             return View(devices);
         }
 
-        public IActionResult Details(string serialNr)
+        public IActionResult Details(string serialNr, string timeLimit)
         {
+            
+            var limit = TimeLimit.today;
+            Enum.TryParse(timeLimit, true, out limit);
             var device = _deviceService.GetDevice(serialNr, TimeLimit.this_week);
             return View(device);
         }
