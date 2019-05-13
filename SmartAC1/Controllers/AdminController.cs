@@ -15,15 +15,18 @@ namespace SmartAC1.Controllers
             _deviceService = deviceService;
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet]
         public IActionResult Index()
         {
             var devices = _deviceService.GetAllDevices();
             return View(devices);
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
+        [HttpGet("Details")]
         public IActionResult Details(string serialNr, string timeLimit)
         {
-            
             var limit = TimeLimit.today;
             Enum.TryParse(timeLimit, true, out limit);
             var device = _deviceService.GetDevice(serialNr, limit);

@@ -15,6 +15,7 @@ using SmartAC1.Core.Interfaces;
 using SmartAC1.Core.Services;
 using SmartAC1.Data;
 using SmartAC1.Data.Repositories;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace SmartAC1
 {
@@ -60,6 +61,14 @@ namespace SmartAC1
             services.AddTransient<ISensorDataRepository, SensorDataRepository>();
             services.AddTransient<ISensorDataService, SensorDataService>();
             services.AddTransient<IDeviceService, DeviceService>();
+
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new Info { Title = "SmartAC API", Version = "v1.0.0" });
+                c.CustomSchemaIds(t => t.FullName);
+                c.DescribeAllEnumsAsStrings();
+                //c.AddSecurityDefinition("basic", new BasicAuthScheme { Type = "basic", Description = "Basic HTTP Authentication" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +89,13 @@ namespace SmartAC1
             app.UseStaticFiles();
             app.UseCookiePolicy();
             app.UseAuthentication();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.RoutePrefix = "swagger";
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "SmartAC API - v1.0.0");
+            });
 
             app.UseMvc(routes =>
             {

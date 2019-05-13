@@ -9,8 +9,7 @@ namespace SmartAC1.Data
 {
     public class DbInitializer
     {
-        public static async Task Initialize(SmartAc1DbContext context, UserManager<IdentityUser> userManager,
-            RoleManager<IdentityRole> roleManager, ILogger<DbInitializer> logger)
+        public static async Task Initialize(SmartAc1DbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, ILogger<DbInitializer> logger)
         {
             context.Database.EnsureCreated();
             //await CreateTemplateTexts(context);

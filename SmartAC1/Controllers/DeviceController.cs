@@ -23,7 +23,7 @@ namespace SmartAC1.Controllers
 
             if (_rnd.Next(100) % 3 == 0) return val;
 
-            if (_rnd.Next(30) % 2 == 0)
+            if (_rnd.Next(100) % 2 == 0)
                 return val + (val * spread);
             return val - (val * spread);
         };
@@ -33,13 +33,14 @@ namespace SmartAC1.Controllers
             _deviceService = deviceService;
         }
 
+        [HttpGet]
         public IEnumerable<Device> Get()
         {
             var result = _deviceService.GetAllDevices();
             return result;
         }
 
-        [HttpGet("{serialNr}/{timeLimit}"), Route("serialNr")]
+        [HttpGet("{serialNr}/{timeLimit}")]
         public Device GetBySerialNr(string serialNr, string timeLimit)
         {
             var limit = TimeLimit.today;
@@ -59,7 +60,7 @@ namespace SmartAC1.Controllers
         public IActionResult Seed()
         {
             var devices = Enumerable
-                .Range(1, 20)
+                .Range(1, 3)
                 .Select(i => new Device
                 {
                     FirmwareVersion = "1.0.0",
@@ -78,7 +79,7 @@ namespace SmartAC1.Controllers
         private void SeedSensorData(Device device)
         {
             const int minutes_in_day = 1440;
-            var days = DateTime.Now.Subtract(device.RegistrationDate).Days;
+            var days = 7;
             var eventsToGenerate = days * minutes_in_day;
 
             var sensorDatas = new List<SensorData>();
