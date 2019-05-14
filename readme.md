@@ -1,7 +1,8 @@
 # SmartAC Proof of Concept
 
-SmartAC is a set of API's and management pages for smart air conditioners.  The deployed air conditioners will submit a range of sensor readings at regular intervals, as well as data about hardware/software status of the AC unit itself.
 ---
+
+SmartAC is a set of API's and management pages for smart air conditioners.  The deployed air conditioners will submit a range of sensor readings at regular intervals, as well as data about hardware/software status of the AC unit itself.
 
 ## Technical specs
 * Tech stack: ASP.NET Core 2.2 with MVC and WebAPI.
