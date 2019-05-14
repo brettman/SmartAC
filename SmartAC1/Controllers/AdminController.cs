@@ -32,5 +32,12 @@ namespace SmartAC1.Controllers
             var device = _deviceService.GetDevice(serialNr, limit);
             return View(new DeviceViewModel(device));
         }
+
+        [ApiExplorerSettings(IgnoreApi = true)]
+        public IActionResult Search(string searchString)
+        {
+            var found = _deviceService.SearchPartialSerialNr(searchString);
+            return View("Index", found);
+        }
     }
 }
