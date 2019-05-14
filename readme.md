@@ -1,8 +1,8 @@
-#SmartAC Proof of Concept
+# SmartAC Proof of Concept
 
 SmartAC is a set of API's and management pages for smart air conditioners.  The deployed air conditioners will submit a range of sensor readings at regular intervals, as well as data about hardware/software status of the AC unit itself.
 
-##Quick links
+## Quick links
 The full site is deployed here:
 http://theorem-smartac.azurewebsites.net/
 
@@ -11,7 +11,7 @@ http://theorem-smartac.azurewebsites.net/swagger
 
 ---
 
-##Technical specs
+## Technical specs
 * Tech stack: ASP.NET Core 2.2 with MVC and WebAPI.
 * Database: SQL Server.
 * ORM: EntityFramework Core
@@ -21,7 +21,7 @@ http://theorem-smartac.azurewebsites.net/swagger
 
 ---
 
-##API's
+## API's
 
 ### Device
 #### [GET] /api/device
