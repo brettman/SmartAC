@@ -19,7 +19,14 @@ http://theorem-smartac.azurewebsites.net/
 
 API documentation is here:
 http://theorem-smartac.azurewebsites.net/swagger
----
+
+## Project Structure
+SmartAC1 -  This is the web application and host for all API's and pages.  All configuration is done here for the DB, DI, security, etc. 
+
+SmartAC1.Core - This is a container assembly for shared types, interfaces and custom services.  Services are generally thougt of as logical processors between the hosting site and other components (e.g. db repositories or third parties). Services coordinate other dependencies to provide synthesised information to the host site and API's. Core should not have dependencies on other projects.  All other projects in the solution CAN reference core.  This layer often seems redundant in less complicated processing environments (such as this one), however I find the consistent structural implementation allows for improved productivity over time, and especially in complex processing environments where, for example mulitple data repositories and other services (internal and third party) must be coordinated.
+
+SmartAC1.Data - This is a data layer assembly and contains all the ORM and Repository abstractions.  
+
 
 ## Remaining work
 The spec has not yet been fully implemented.  There are several items to address in the next sprint:
@@ -41,6 +48,9 @@ While the device page does allow a user to view a device's sensor data in tabula
 
 4) Performance.
 This API and site are for POC only and have not been designed for performance.  You will notice this if you try to load a year of sensor data in the Device page...
+
+5) Data Validation.
+No effort has yet been made to validate data inputs. The API will process correctly formatted data, but is still quite brittle in case of malformed inputs.  Once the data inputs and API prcoesses are confirmed, we can add both validation and error handling to the site.
 ---
 
 ## API's
