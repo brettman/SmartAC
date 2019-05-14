@@ -10,6 +10,25 @@ API documentation is here:
 http://theorem-smartac.azurewebsites.net/swagger
 
 ---
+## Remaining work
+The spec has not yet been fully implemented.  There are several items to address in the next sprint:
+
+1) Security.
+Neither the admin pages, nor the API's have been secured.  We need to ensure that all traffic is submitted over SSL, then at very least add basic authentication tokens to the API submission requests.  
+User security and logins have been implemented internally.  The database is seeded with a default user in the 'admin' role with:
+```
+username:  admintest@theorem.com
+password:  pass_word0
+```
+Unfortunately there was not enough time in the first round to complete the UI and allow users to login/logout.
+
+2) UI.
+No effort has yet been made to implement graphic design or UI styling to the admin pages.  These are ASP.NET default templates.  A UI specialist should be engaged to improve the look and usability of the site.
+
+3) Sensor data display.
+While the device page does allow a user to view a device's sensor data in tabular format, there are a number of required improvements here.  First, I was not able to complete the implementation of a graph display.  This work should probably be assigned to the UI specialist in phase two.  Second, there is a larger concern given the amount of data to display in the graph itself.  With one minute submission intervals, we achieve 1440 datapoints each day.  Some thought should be given to decide on an appropriate way to summarise and display this data over different time periods.
+
+---
 
 ## Technical specs
 * Tech stack: ASP.NET Core 2.2 with MVC and WebAPI.
