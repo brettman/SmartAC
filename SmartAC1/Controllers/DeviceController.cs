@@ -56,6 +56,7 @@ namespace SmartAC1.Controllers
             return result;
         }
 
+        [ApiExplorerSettings(IgnoreApi = true)]
         [HttpPut, Route("Seed")]
         public IActionResult Seed()
         {
