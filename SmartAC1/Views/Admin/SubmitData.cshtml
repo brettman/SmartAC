@@ -1,0 +1,61 @@
+﻿@model SmartAC1.Core.Models.SensorData
+
+@{
+    ViewData["Title"] = "SubmitData";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>View</h1>
+
+<h4>SensorData</h4>
+<em>This page is for demo and trial purposes only!  Try adding some data that will trigger an alert on the home page.</em>
+<p>For Health status try:  'gas_leak' | 'needs_service' | 'needs_new_filter'</p>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="SubmitData">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SerialNr" class="control-label"></label>
+                <input asp-for="SerialNr" class="form-control" />
+                <span asp-validation-for="SerialNr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="SubmissionTime" class="control-label"></label>
+                <input asp-for="SubmissionTime" class="form-control" />
+                <span asp-validation-for="SubmissionTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TemperatureInCelsius" class="control-label"></label>
+                <input asp-for="TemperatureInCelsius" class="form-control" />
+                <span asp-validation-for="TemperatureInCelsius" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="HumidityPercentage" class="control-label"></label>
+                <input asp-for="HumidityPercentage" class="form-control" />
+                <span asp-validation-for="HumidityPercentage" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CarbonMonoxidePpm" class="control-label"></label>
+                <input asp-for="CarbonMonoxidePpm" class="form-control" />
+                <span asp-validation-for="CarbonMonoxidePpm" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DeviceHealthStatus" class="control-label"></label>
+                <input asp-for="DeviceHealthStatus" class="form-control" />
+                <span asp-validation-for="DeviceHealthStatus" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

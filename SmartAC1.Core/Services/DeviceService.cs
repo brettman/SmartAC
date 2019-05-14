@@ -8,7 +8,6 @@ namespace SmartAC1.Core.Services
     public class DeviceService : IDeviceService
     {
         private readonly IDeviceRepository _repo;
-        private readonly IAlertsRepository _alerts;
 
         public DeviceService(IDeviceRepository repo)
         {

@@ -1,0 +1,44 @@
+﻿@model SmartAC1.Core.Models.Device
+
+@{
+    ViewData["Title"] = "RegisterDevice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>RegisterDevice</h1>
+
+<h4>Device</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RegisterDevice">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="SerialNr" class="control-label"></label>
+                <input asp-for="SerialNr" class="form-control" />
+                <span asp-validation-for="SerialNr" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="RegistrationDate" class="control-label"></label>
+                <input asp-for="RegistrationDate" class="form-control" />
+                <span asp-validation-for="RegistrationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FirmwareVersion" class="control-label"></label>
+                <input asp-for="FirmwareVersion" class="form-control" />
+                <span asp-validation-for="FirmwareVersion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

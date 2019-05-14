@@ -25,7 +25,7 @@ namespace SmartAC1.Controllers
                 _dataService.AddSensorDataBulk(data);
                 return Ok();
             }
-            catch (Exception ex)
+            catch 
             {
                 return new StatusCodeResult(500);
             }

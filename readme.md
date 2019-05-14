@@ -1,6 +1,16 @@
 # SmartAC Proof of Concept
 
 SmartAC is a set of API's and management pages for smart air conditioners.  The deployed air conditioners will submit a range of sensor readings at regular intervals, as well as data about hardware/software status of the AC unit itself.
+---
+
+## Technical specs
+* Tech stack: ASP.NET Core 2.2 with MVC and WebAPI.
+* Database: SQL Server.
+* ORM: EntityFramework Core
+* Identity management:  standard MS identity  (not fully implemented, see below!)
+* IOC / DI:  Unity (Microsoft)
+* Hosting:  Azure
+---
 
 ## Quick links
 The full site is deployed here:
@@ -8,8 +18,8 @@ http://theorem-smartac.azurewebsites.net/
 
 API documentation is here:
 http://theorem-smartac.azurewebsites.net/swagger
-
 ---
+
 ## Remaining work
 The spec has not yet been fully implemented.  There are several items to address in the next sprint:
 
@@ -28,16 +38,8 @@ No effort has yet been made to implement graphic design or UI styling to the adm
 3) Sensor data display.
 While the device page does allow a user to view a device's sensor data in tabular format, there are a number of required improvements here.  First, I was not able to complete the implementation of a graph display.  This work should probably be assigned to the UI specialist in phase two.  Second, there is a larger concern given the amount of data to display in the graph itself.  With one minute submission intervals, we achieve 1440 datapoints each day.  Some thought should be given to decide on an appropriate way to summarise and display this data over different time periods.
 
----
-
-## Technical specs
-* Tech stack: ASP.NET Core 2.2 with MVC and WebAPI.
-* Database: SQL Server.
-* ORM: EntityFramework Core
-* Identity management:  standard MS identity  (not fully implemented, see below!)
-* IOC / DI:  Unity (Microsoft)
-* Hosting:  Azure
-
+4) Performance.
+This API and site are for POC only and have not been designed for performance.  You will notice this if you try to load a year of sensor data in the Device page...
 ---
 
 ## API's
@@ -89,3 +91,8 @@ These are extremely basic administrative pages allowing a user to view and searc
     * needs_service
 
 The actionable alerts can be marked as resolved by the logged in administrator.
+---
+
+## Misc
+* There is a database init class that may or may not be useful in a production scenario. It ensures the creation of the database, and seeds the db with a default admin user.  This can create issues with the regular EF 'add-migration' - 'update-database' workflow.  I usually just bring it in because it speeds up my work in the initial stages of development.  I've left it here for reference.
+
